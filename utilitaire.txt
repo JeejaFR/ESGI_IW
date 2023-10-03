@@ -1,0 +1,7 @@
+composer dump-env dev  
+
+
+
+
+
+symfony console doctrine:fixtures:load --append // --append pour eviter de purge la bdd

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Homepage
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Hello World!</h1>
+
+    {% for nom in donnees %}
+        <li> {{ nom }} </li>
+    {% endfor %}
+{% endblock %}
