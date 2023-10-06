@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Admin des catégories 
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <section class="container mt-4">
+        <h1 class="text-center"> Administration des catégories </h1> 
+        <a href='{{ path('admin.categories.create') }}' class="btn btn-primary">Créer une catégorie</a>
+        <div class="row mt-4">
+            {% for categorie in categories %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <h2 class="card-header"> {{ categorie.titre }} </h2>
+                        <div class="card-body">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input form-switch-visibility" type="checkbox" id="switch-tag-{{categorie.id}}" {{ categorie.enabled ? 'checked'}} data-id="{{ categorie.id }}">
+                                <label class="form-check-label" for="switch-tag-{{categorie.id}}">Visibilité</label>
+                            </div>
+                            <p class="text-visibility {{categorie.enabled ? 'text-success' : 'text-danger'}}"> {{ categorie.enabled ? "Actif" : "Inactif" }} <p>
+                            <div class="mt-2 d-flex justify-content-between">
+                                <a href="{{ path('admin.categories.update', {id: categorie.id }) }}" class="btn btn-warning">Modifier</a>
+                                {% include 'Backend/Categorie/_deleteform.html.twig' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+
